@@ -77,6 +77,10 @@
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="{{ asset("assets/css/custom.css") }}">
+
+    @yield("styles")
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -97,15 +101,7 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6">
-                <h3 class="mb-0">Dashboard</h3>
-              </div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
+              @yield('content_header')
             </div>
             <!--end::Row-->
           </div>
@@ -617,13 +613,13 @@
     <!-- OPTIONAL SCRIPTS -->
 
     <!-- sortablejs -->
-    <script
+    {{-- <script
       src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> --}}
 
     <!-- sortablejs -->
-    <script>
+    {{-- <script>
       new Sortable(document.querySelector('.connectedSortable'), {
         group: 'shared',
         handle: '.card-header',
@@ -633,17 +629,17 @@
       cardHeaders.forEach((cardHeader) => {
         cardHeader.style.cursor = 'move';
       });
-    </script>
+    </script> --}}
 
     <!-- apexcharts -->
-    <script
+    {{-- <script
       src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
       integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
       crossorigin="anonymous"
-    ></script>
+    ></script> --}}
 
     <!-- ChartJS -->
-    <script>
+    {{-- <script>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
       // ++++++++++++++++++++++++++++++++++++++++++
@@ -700,7 +696,7 @@
         sales_chart_options,
       );
       sales_chart.render();
-    </script>
+    </script> --}}
 
     <!-- jsvectormap -->
     <script
@@ -715,7 +711,7 @@
     ></script>
 
     <!-- jsvectormap -->
-    <script>
+    {{-- <script>
       // World map by jsVectorMap
       new jsVectorMap({
         selector: '#world-map',
@@ -806,7 +802,7 @@
 
       const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
       sparkline3.render();
-    </script>
+    </script> --}}
     <!--end::Script-->
   </body>
   <!--end::Body-->

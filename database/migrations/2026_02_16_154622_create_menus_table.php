@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade')->default(0);
+            $table->unsignedBigInteger('menu_id')->default(0);
             $table->string('nombre', 50);
             $table->string('url', 100);
             $table->unsignedTinyInteger('orden')->default(0);
