@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>SIAE Web | @yield('titulo', 'SIAE')</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -58,13 +58,16 @@
     />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
+    {{-- Sweetalert2 --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.17/dist/sweetalert2.min.css">
+
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
 
-    <link rel="stylesheet" href="{{ asset("assets/css/custom.css") }}">
-
     @yield("styles")
+
+    <link rel="stylesheet" href="{{ asset("assets/css/custom.css") }}">
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -157,8 +160,11 @@
         }
       });
     </script>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.17/dist/sweetalert2.all.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
     @yield("scripts")
   </body>
   <!--end::Body-->

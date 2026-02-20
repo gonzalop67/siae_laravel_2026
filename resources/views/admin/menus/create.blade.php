@@ -15,7 +15,7 @@
         <div class="col-md-12">
             @include('includes.form-error')
             @include('includes.mensaje')
-            <div class="card card-primary card-outline mb-4">
+            <div class="card card-danger card-outline mb-4">
                 <form id="form-general" action="{{ route('admin.menus.store') }}" method="POST">
                     @csrf
                     <!--begin::Body-->
