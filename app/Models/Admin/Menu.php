@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class Menu extends Model
 {
@@ -12,6 +13,10 @@ class Menu extends Model
         'icono'
     ];
     protected $guarded = ['id'];
+
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'menu_rol');
+    }
 
     public function getHijos($padres, $line)
     {

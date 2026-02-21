@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class MenuRolController extends Controller
 {
@@ -12,15 +14,11 @@ class MenuRolController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $roles = Role::orderBy('id')->pluck('name', 'id')->toArray();
+        $menus = Menu::getMenu();
+        $menusRoles = Menu::with('roles')->get()->pluck('roles', 'id')->toArray();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('admin.menu-rol.index', compact('roles', 'menus', 'menusRoles'));
     }
 
     /**
@@ -28,38 +26,17 @@ class MenuRolController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if ($request->ajax()) {
+            $menus = new Menu();
+            if ($request->input('estado') == 1) {
+                $menus->find($request->input('menu_id'))->roles()->attach($request->input('rol_id'));
+                return response()->json(['respuesta' => 'El rol se asignó correctamente']);
+            } else {
+                $menus->find($request->input('menu_id'))->roles()->detach($request->input('rol_id'));
+                return response()->json(['respuesta' => 'El rol se eliminó correctamente']);
+            }
+        } else {
+            abort(404);
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\MenuRolController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
@@ -36,7 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/roles/{id}', [RolController::class, 'update'])->name('admin.roles.update');
     Route::delete('/admin/roles/{id}', [RolController::class, 'destroy'])->name('admin.roles.destroy');
 
+    // rutas para menu-rol
+    Route::get('/admin/menu-rol', [MenuRolController::class, 'index'])->name('admin.menu_rol.index');
+    Route::post('/admin/menu-rol', [MenuRolController::class, 'store'])->name('admin.menu_rol.store');
+
     // rutas para las configuraciones
     Route::get('/admin/institutions', [ConfigurationController::class, 'index'])->name('admin.institutions.index');
-
 });

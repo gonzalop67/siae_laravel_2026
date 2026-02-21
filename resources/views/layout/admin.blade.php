@@ -65,6 +65,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     @yield("styles")
 
     <link rel="stylesheet" href="{{ asset("assets/css/custom.css") }}">
@@ -164,7 +166,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.17/dist/sweetalert2.all.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/js/funciones.js') }}"></script>
+
     @yield("scripts")
   </body>
   <!--end::Body-->
