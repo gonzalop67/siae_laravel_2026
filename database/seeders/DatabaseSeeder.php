@@ -31,14 +31,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ing. Gonzalo Peñaherrera E.',
             'email' => 'administrador_siae@gmail.com',
             'password' => bcrypt('gP67M24e$'),
-            'titulo' => 'Ing.',
-            'titulo_descripcion' => 'Ingeniero en Sistemas Informáticos y de Computación', 
-            'apellidos' => 'Peñaherrera Escobar',
-            'nombres' => 'Gonzalo Nicolás',
-            'shortname' => 'Ing. Gonzalo Peñaherrera',
-            'fullname' => 'Peñaherrera Escobar Gonzalo Nicolás',
             'foto' => 'gonzalofoto.jpg',
-            'genero' => 'M'
         ])->assignRole('SUPER ADMIN');
 
         $this->call(TablaConfiguracionSeeder::class);

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -21,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // rutas para los menúes
+    // rutas para los menús
     Route::get('/admin/menus', [MenuController::class, 'index'])->name('admin.menus.index');
     Route::get('/admin/menus/create', [MenuController::class, 'create'])->name('admin.menus.create');
     Route::post('/admin/menus', [MenuController::class, 'store'])->name('admin.menus.store');
@@ -44,3 +45,13 @@ Route::middleware('auth')->group(function () {
     // rutas para las configuraciones
     Route::get('/admin/institutions', [ConfigurationController::class, 'index'])->name('admin.institutions.index');
 });
+
+// 1. Vista para ingresar el correo
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+// 2. Procesar el envío del correo de recuperación
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// 3. Vista para escribir la nueva contraseña (el enlace que llegará al correo)
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+// 4. Procesar el cambio de contraseña en la base de datos
+Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');

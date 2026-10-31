@@ -13,7 +13,7 @@ class TablaConfiguracionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('configurations')->insert([
+        DB::table('settings')->insert([
             'nombre' => 'UNIDAD EDUCATIVA PCEI FISCAL SALAMANCA',
             'direccion' => 'Calle el Tiempo y Pasaje Mónaco',
             'telefono' => '2256311/2254818',

@@ -47,7 +47,7 @@
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header">
-                <a href="{{ $configuration->url }}"
+                <a href="{{ $setting->url }}"
                     class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover">
                     <h1 class="mb-0"><b>S. I. A. E.</b></h1>
                 </a>
@@ -87,6 +87,17 @@
                             <span class="bi bi-lock-fill"></span>
                         </div>
                     </div>
+
+                    {{-- begin::Opciones adicionales (Olvidé mi contraseña) --}}
+                    <div class="row mb-3">
+                        <div class="col-12 text-end">
+                            <a href="{{ route('password.request') }}" class="link-danger text-decoration-none small">
+                                ¿Olvidó su contraseña?
+                            </a>
+                        </div>
+                    </div>
+                    {{-- end::Opciones adicionales --}}
+
                     {{-- begin::Row --}}
                     <div class="row">
                         <div class="col-12">
@@ -101,7 +112,7 @@
             </div>
             {{-- /.login-card-body --}}
             <div class="card-footer text-center">
-                {{ $configuration->nombre }}
+                {{ $setting->nombre }}
             </div>
         </div>
     </div>

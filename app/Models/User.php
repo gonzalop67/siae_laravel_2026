@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -45,5 +47,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function setSession($roles, $roleIds)
+    {
+        Session::put([
+            'usuario' => Auth::user()->name,
+            'usuario_id' => Auth::user()->id
+        ]);
+        if (count($roles) == 1) {
+            Session::put(
+                [
+                    'rol_id' => $roleIds[0],
+                    'rol_nombre' => $roles[0],
+                ]
+            );
+        } else {
+            Session::put('roles', $roles);
+        }
     }
 }

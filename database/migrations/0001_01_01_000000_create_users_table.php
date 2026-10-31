@@ -14,21 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // Campos propios
-            $table->string('titulo', 8)->nullable();
-            $table->string('titulo_descripcion', 96)->nullable();
-            $table->string('apellidos', 32);
-            $table->string('nombres', 32);
-            $table->string('shortname', 45);
-            $table->string('fullname', 64);
-            $table->string('foto', 100);
-            $table->string('genero', 1);
-            $table->boolean('activo')->default(1);
-            //
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            // Campos propios
+            $table->string('foto', 100);
+            //
             $table->timestamps();
             // Definición de collation
             $table->charset = 'utf8mb4';
