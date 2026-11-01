@@ -147,41 +147,33 @@
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="{{ asset('adminlte/dist/assets/img/user2-160x160.jpg') }}"
+                    {{-- Imagen de perfil leída desde el campo 'foto' --}}
+                    <img src="{{ auth()->user()->foto ? asset('uploads/' . auth()->user()->foto) : asset('adminlte/dist/assets/img/user2-160x160.jpg') }}"
                         class="user-image rounded-circle shadow" alt="User Image" />
-                    <span class="d-none d-md-inline">{{ session('usuario'); }}</span>
+                    <span class="d-none d-md-inline">{{ session('usuario') ?? auth()->user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <!--begin::User Image-->
                     <li class="user-header text-bg-primary">
-                        <img src="{{ asset('adminlte/dist/assets/img/user2-160x160.jpg') }}"
+                        <img src="{{ auth()->user()->foto ? asset('uploads/' . auth()->user()->foto) : asset('adminlte/dist/assets/img/user2-160x160.jpg') }}"
                             class="rounded-circle shadow" alt="User Image" />
                         <p>
-                            Alexander Pierce - Web Developer
-                            <small>Member since Nov. 2023</small>
+                            {{ auth()->user()->name }}
+                            <small>
+                                @if (session()->has('rol_nombre'))
+                                    Rol: {{ session('rol_nombre') }}
+                                @else
+                                    {{ auth()->user()->roles->first()->name ?? 'Usuario' }}
+                                @endif
+                            </small>
                         </p>
                     </li>
                     <!--end::User Image-->
-                    <!--begin::Menu Body-->
-                    <li class="user-body">
-                        <!--begin::Row-->
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <a href="#">Followers</a>
-                            </div>
-                            <div class="col-4 text-center">
-                                <a href="#">Sales</a>
-                            </div>
-                            <div class="col-4 text-center">
-                                <a href="#">Friends</a>
-                            </div>
-                        </div>
-                        <!--end::Row-->
-                    </li>
-                    <!--end::Menu Body-->
+
                     <!--begin::Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-outline-secondary">Profile</a>
+                        <a href="{{ url('admin/perfil') }}" class="btn btn-outline-secondary">Perfil</a>
+
                         <form class="d-inline" action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-outline-danger float-end">Salir</button>
@@ -191,6 +183,7 @@
                 </ul>
             </li>
             <!--end::User Menu Dropdown-->
+
         </ul>
         <!--end::End Navbar Links-->
     </div>

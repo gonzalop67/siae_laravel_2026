@@ -6,12 +6,15 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Excluimos la ruta 'logout' para evitar el error 419 por inactividad
+        $middleware->validateCsrfTokens(except: [
+            'logout'
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
